@@ -157,6 +157,36 @@ footer p {
   text-align: center;
 }
 
+/*CSS for classification*/
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+#inv-display li {
+  border: 1px solid var(--head-color);
+  list-style: none;
+  background-color: var(--main-bg);
+  padding: 1rem;
+}
+#inv-display li img {
+  display: block;
+  margin: auto;
+  width: 70%;
+  height: auto;
+}
+.namePrice hr {
+  background-color: var(--head-color);
+  height: 2px;
+  padding: 2px;
+}
+.namePrice span {
+  display: block;
+  text-align: center;
+  font-family: var(--header-font);
+  font-size: 1rem;
+}
+
 @media screen and (min-width: 800px) {
   .home-content {
     display: grid;
