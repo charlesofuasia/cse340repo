@@ -165,9 +165,11 @@ footer p {
 }
 #inv-display li {
   border: 1px solid var(--head-color);
+  border-radius: 10px;
   list-style: none;
   background-color: var(--main-bg);
   padding: 1rem;
+  width: 300px;
 }
 #inv-display li img {
   display: block;
