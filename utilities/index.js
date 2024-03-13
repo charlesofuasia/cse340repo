@@ -78,6 +78,23 @@ Util.buildClassificationGrid = async function (data) {
   return grid;
 };
 
+/************************
+ * function to build view
+ * of vehicle details by inv_id
+ ********************/
+Util.buildVehicleDetail = async function (data) {
+  let details;
+  if (!data) {
+    details += "<p>Sorry, this product is not in stock. </p>";
+  } else {
+    details += '<div id="details-view">';
+    details += '<img src="' + data.inv_image;
+    details += '"/>';
+    details += "</div>";
+  }
+  return details;
+};
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for
