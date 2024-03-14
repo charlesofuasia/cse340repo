@@ -46,7 +46,8 @@ invCont.intentionalError = async function (req, res, next) {
   let nav = await utilities.getNav();
   res.render("./inventory/details", {
     title: "Intentional Error",
-    nav,
+    nav, // error is because the details needed to build the body at
+    // ./inventory/details is not defined in this function.
   });
 };
 
