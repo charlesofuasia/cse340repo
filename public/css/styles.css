@@ -195,6 +195,10 @@ footer p {
   font-family: var(--header-font);
   font-size: 1rem;
 }
+#image-box img {
+  width: 100%;
+  height: auto;
+}
 
 @media screen and (min-width: 800px) {
   .home-content,
