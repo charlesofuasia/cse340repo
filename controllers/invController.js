@@ -29,10 +29,11 @@ invCont.buildVehicleDetail = async function (req, res, next) {
   const details = await utilities.buildVehicleDetail(data);
   let nav = await utilities.getNav();
   console.log(data);
-  const vehicleMake = data.inv_make;
-  const vehicleModel = data.inv_model;
+  const vehicleYear = data[0].inv_year;
+  const vehicleMake = data[0].inv_make;
+  const vehicleModel = data[0].inv_model;
   res.render("./inventory/details", {
-    title: `${vehicleMake} ${vehicleModel} details`,
+    title: `${vehicleYear} ${vehicleMake} ${vehicleModel} Details`,
     nav,
     details,
   });

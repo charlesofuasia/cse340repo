@@ -83,13 +83,45 @@ Util.buildClassificationGrid = async function (data) {
  * of vehicle details by inv_id
  ********************/
 Util.buildVehicleDetail = async function (data) {
-  let details;
+  let details = "";
   if (!data) {
     details += "<p>Sorry, this product is not in stock. </p>";
   } else {
     details += '<div id="details-view">';
-    details += '<img src="' + data.inv_image;
+    details += '<div id="image-box">';
+    details +=
+      '<img src="' +
+      data[0].inv_image +
+      '"' +
+      ' alt="Image of ' +
+      data[0].inv_year +
+      " " +
+      data[0].inv_make +
+      " " +
+      data[0].inv_model;
     details += '"/>';
+    details += "</div>";
+    details += '<div id="info-box">';
+    details += "<h2> Details of ";
+    details +=
+      data[0].inv_year + " " + data[0].inv_make + " " + data[0].inv_model;
+    details += "</h2>";
+    details +=
+      '<p class="bold">Price: $' +
+      new Intl.NumberFormat("en-US").format(data[0].inv_price) +
+      "</p>";
+    details +=
+      '<p><span class="bold">Description:</span> ' +
+      data[0].inv_description +
+      "</p>";
+    details +=
+      '<p><span class="bold">Color:</span> ' + data[0].inv_color + "</p>";
+    details +=
+      '<p><span class="bold">Miles:</span> ' +
+      new Intl.NumberFormat("en-US").format(data[0].inv_miles) +
+      "</p>";
+
+    details += "</div>";
     details += "</div>";
   }
   return details;

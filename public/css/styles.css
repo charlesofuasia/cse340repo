@@ -48,6 +48,13 @@ a {
   text-decoration: none;
   color: var(--head-color);
 }
+p {
+  font-family: var(--para-font);
+}
+.bold {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
 nav {
   max-width: 100%;
   background-color: var(--head-color);
@@ -190,7 +197,8 @@ footer p {
 }
 
 @media screen and (min-width: 800px) {
-  .home-content {
+  .home-content,
+  #details-view {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
