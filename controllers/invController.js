@@ -28,7 +28,6 @@ invCont.buildVehicleDetail = async function (req, res, next) {
   const data = await invModel.getInventoryDetailByInvId(inv_id);
   const details = await utilities.buildVehicleDetail(data);
   let nav = await utilities.getNav();
-  console.log(data);
   const vehicleYear = data[0].inv_year;
   const vehicleMake = data[0].inv_make;
   const vehicleModel = data[0].inv_model;
