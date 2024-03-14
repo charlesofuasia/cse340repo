@@ -16,4 +16,7 @@ router.get(
   utilities.handleErrors(invController.buildVehicleDetail)
 );
 
+//Intentional Error route
+router.get("/err", utilities.handleErrors(invController.intentionalError));
+
 module.exports = router;

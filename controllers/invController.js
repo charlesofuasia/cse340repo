@@ -38,4 +38,16 @@ invCont.buildVehicleDetail = async function (req, res, next) {
   });
 };
 
+/*****************************
+ * A function to demonstrate internal
+ * server error
+ *************************/
+invCont.intentionalError = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  res.render("./inventory/details", {
+    title: "Intentional Error",
+    nav,
+  });
+};
+
 module.exports = invCont;
