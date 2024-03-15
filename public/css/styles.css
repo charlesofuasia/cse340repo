@@ -55,12 +55,6 @@ p {
   font-size: 1.2rem;
   font-weight: bold;
 }
-.left {
-  text-align: left;
-}
-.center {
-  text-align: center;
-}
 nav {
   max-width: 100%;
   background-color: var(--head-color);
@@ -182,13 +176,12 @@ footer p {
   list-style: none;
   background-color: var(--main-bg);
   padding: 1rem;
-  margin: auto;
   width: 300px;
 }
 #inv-display li img {
   display: block;
   margin: auto;
-  width: 100%;
+  width: 70%;
   height: auto;
 }
 .namePrice hr {
