@@ -1,7 +1,7 @@
-<!--to insert title as header-->
-<% if (title) {%>
+<!-- A content heading -->
+<% if (title) { %>
 <h1><%= title %></h1>
 <% } else { res.redirect('/') } %>
 
-<!--The mains content-->
-<%- details %>
+<!--a message #-->
+<%- message %>
