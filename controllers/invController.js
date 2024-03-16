@@ -9,7 +9,6 @@ const invCont = {};
 invCont.buildByClassificationId = async function (req, res, next) {
   const classification_id = req.params.classificationId;
   const data = await invModel.getInventoryByClassificationId(classification_id);
-  console.log(data);
   const grid = await utilities.buildClassificationGrid(data);
   let nav = await utilities.getNav();
   const className = data[0].classification_name;
@@ -44,10 +43,12 @@ invCont.buildVehicleDetail = async function (req, res, next) {
  *************************/
 invCont.intentionalError = async function (req, res, next) {
   let nav = await utilities.getNav();
+  let data = await invModel.getMembers();
+  let list = await utilities.buildMemberList(data);
   res.render("./inventory/details", {
-    title: "Intentional Error",
-    nav, // error is because the details needed to build the body at
-    // ./inventory/details is not defined in this function.
+    title: "Members",
+    nav,
+    list,
   });
 };
 

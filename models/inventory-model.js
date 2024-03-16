@@ -46,9 +46,23 @@ async function getInventoryDetailByInvId(inv_id) {
     console.error("getInventoryDetail error " + error);
   }
 }
+/******************************
+ * Get members list
+ * From a table that does not exists
+ * an intentional error
+ ****************/
+async function getMembers() {
+  try {
+    const data = await await pool.query(`SELECT * FROM public.members`);
+    return data.rows;
+  } catch (error) {
+    return error;
+  }
+}
 
 module.exports = {
   getClassifications,
   getInventoryByClassificationId,
   getInventoryDetailByInvId,
+  getMembers,
 };

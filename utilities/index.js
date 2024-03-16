@@ -127,6 +127,21 @@ Util.buildVehicleDetail = async function (data) {
   return details;
 };
 
+/*******************
+ * Build members list
+ * Intentional error
+ ***************/
+Util.buildMemberList = async function (data) {
+  let list = '<ol id="members-list">';
+  data.forEach((member) => {
+    list += "<li>";
+    list += member.member_id + " " + member.member_name;
+    list += "</li>";
+  });
+  list += "</ul>";
+  return list;
+};
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for
