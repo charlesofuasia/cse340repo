@@ -1,0 +1,27 @@
+<% if (title) { %>
+<div id="login">
+  <h1><%= title %></h1>
+  <%- messages() %>
+  <form action="">
+    <div>*All fields are required.</div>
+    <label for="email">
+      Email:
+      <input type="email" name="account_email" id="account_email" required />
+    </label>
+    <label for="password">
+      Password:
+      <input
+        type="text"
+        name="account_password"
+        id="account_password"
+        required
+        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+      />
+    </label>
+    <button type="submit">Login</button>
+  </form>
+  <span class="reg-info"
+    >No account? <a href="/account/register">Sign-up</a></span
+  >
+</div>
+<% } else { res.redirect('/') } %>
