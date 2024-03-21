@@ -175,6 +175,22 @@ footer p {
   background-color: var(--main-bg);
   font-size: 0.8rem;
 }
+/* styling for management view*/
+#management {
+  width: 19rem;
+  margin: 2rem auto;
+  border: solid 1px var(--head-color);
+  background-color: var(--main-bg);
+  padding: 1rem;
+}
+#management.manage-option {
+  font-family: var(--para-font);
+  padding: 2rem 0;
+}
+.manage-option a {
+  font-weight: bold;
+  text-decoration: underline;
+}
 
 /*CSS for classification*/
 #inv-display {

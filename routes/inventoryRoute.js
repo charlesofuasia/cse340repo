@@ -16,6 +16,12 @@ router.get(
   utilities.handleErrors(invController.buildVehicleDetail)
 );
 
+//Router to build management view
+router.get(
+  "/management",
+  utilities.handleErrors(invController.buildManagement)
+);
+
 //Intentional Error route
 router.get("/err", utilities.handleErrors(invController.intentionalError));
 

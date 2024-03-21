@@ -37,6 +37,17 @@ invCont.buildVehicleDetail = async function (req, res, next) {
   });
 };
 
+/*************************************
+ * A function to build the management view
+ ***************************************/
+invCont.buildManagement = async function (req, res, next) {
+  const nav = await utilities.getNav();
+  res.render("./inventory/management", {
+    title: "Management",
+    nav,
+  });
+};
+
 /*****************************
  * A function to demonstrate internal
  * server error
