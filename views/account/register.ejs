@@ -1,7 +1,12 @@
 <% if (title) { %>
 <div id="register">
   <h1><%= title %></h1>
-  <%- messages() %> <% if (errors) { %>
+  <% }else{res.redirect('/')} %>
+  <!--Messages fxn-->
+  <%- messages() %>
+
+  <!--error message block-->
+  <% if (errors) { %>
   <ul class="notice">
     <% errors.array().forEach(error => { %>
     <li><%= error.msg %></li>
@@ -18,6 +23,7 @@
         name="account_firstname"
         id="account_firstname"
         required
+        value="<%= locals.account_firstname %>"
       />
     </label>
     <label for="lastname">
@@ -27,11 +33,18 @@
         name="account_lastname"
         id="account_lastname"
         required
+        value="<%= locals.account_lastname %>"
       />
     </label>
     <label for="email">
       Email:
-      <input type="email" name="account_email" id="account_email" required />
+      <input
+        type="email"
+        name="account_email"
+        id="account_email"
+        required
+        value="<%= locals.account_email %>"
+      />
     </label>
     <label for="password">
       Password:
@@ -47,7 +60,6 @@
         letter, 1 number and 1 special character
       </div>
     </label>
-    <button type="submit">Register</button>
+    <input type="submit" value="Register" id="btn" />
   </form>
 </div>
-<% }else{res.redirect('/')} %>
