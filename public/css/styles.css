@@ -177,7 +177,8 @@ footer p {
 }
 /* styling for management view*/
 #management,
-#classAdd {
+#classAdd,
+#addInventory {
   width: 19rem;
   margin: 2rem auto;
   border: solid 1px var(--head-color);
@@ -238,7 +239,8 @@ footer p {
   margin: 0 auto;
 }
 label,
-input {
+input,
+textarea {
   display: block;
 }
 label {

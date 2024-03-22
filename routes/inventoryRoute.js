@@ -37,6 +37,12 @@ router.post(
   utilities.handleErrors(invController.addclassification)
 );
 
+// route to build the add-inventory view
+router.get(
+  "/add-inventory",
+  utilities.handleErrors(invController.buildAddInventoryView)
+);
+
 //Intentional Error route
 router.get("/err", utilities.handleErrors(invController.intentionalError));
 

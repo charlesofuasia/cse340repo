@@ -1,0 +1,116 @@
+<% if (title) {%>
+<div id="addInventory">
+  <h1><%= title %></h1>
+  <form action="/inv/add-inventory" method="post">
+    <div>Please provide details of the new vehicle inventory</div>
+    <div>*All fields required</div>
+    <label for="make">
+      Vehicle Make:
+      <input
+        type="text"
+        name="inv_make"
+        id="invMake"
+        required
+        value="<%= locals.inv_make %>"
+      />
+    </label>
+    <label for="model">
+      Vehicle Model:
+      <input
+        type="text"
+        name="inv_model"
+        id="invModel"
+        required
+        value="<%= locals.inv_model %>"
+      />
+    </label>
+    <label for="year">
+      Model Year:
+      <input
+        type="number"
+        name="inv_year"
+        id="invYear"
+        required
+        min="1950"
+        max="2025"
+        value="<%= locals.inv_year %>"
+      />
+    </label>
+    <label for="description">
+      Description:
+      <textarea
+        name="inv_description"
+        id="invDescription"
+        cols="30"
+        rows="5"
+        required
+        aria-valuetext="<%= locals.inv_description %>"
+      ></textarea>
+    </label>
+    <label for="Image">
+      Vehicle Image:
+      <input
+        type="text"
+        name="inv_image"
+        id="invImage"
+        required
+        pattern="(.jpg|.png|jpeg)$"
+        value="<%= locals.inv_image %>"
+      />
+    </label>
+    <label for="thumbnail">
+      Thumbnail:
+      <input
+        type="text"
+        name="inv_thumbnail"
+        id="thumbnail"
+        required
+        value="<%= locals.inv_thumbnail %>"
+      />
+    </label>
+    <label for="price">
+      Price:
+      <input
+        type="number"
+        name="inv_price"
+        id="invPrice"
+        required
+        min="20"
+        value="<%= locals.inv_price  %>"
+      />
+    </label>
+    <label for="miles">
+      Miles:
+      <input
+        type="number"
+        name="inv_miles"
+        id="invMiles"
+        minlength="1"
+        required
+        value="<%= locals.inv_miles %>"
+      />
+    </label>
+    <label for="color">
+      Color:
+      <input
+        type="text"
+        name="inv_color"
+        id="invColor"
+        required
+        value="<%= locals.inv_color %>"
+      />
+    </label>
+    <label for="classId">
+      Classification Id:
+      <input
+        type="number"
+        name="classification_id"
+        id="classId"
+        required
+        value="<%= locals.classification_id %>"
+      />
+    </label>
+    <button type="submit">Add Vehicle</button>
+  </form>
+</div>
+<%} else{res.redirect("/")} %>

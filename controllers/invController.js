@@ -88,6 +88,15 @@ invCont.addclassification = async function (req, res) {
   }
 };
 
+invCont.buildAddInventoryView = async function (req, res, next) {
+  const nav = await utilities.getNav();
+  res.render("./inventory/add-inventory", {
+    title: "Add New Inventory",
+    nav,
+    errors: null,
+  });
+};
+
 /*****************************
  * A function to demonstrate internal
  * server error
