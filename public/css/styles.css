@@ -176,7 +176,8 @@ footer p {
   font-size: 0.8rem;
 }
 /* styling for management view*/
-#management {
+#management,
+#classAdd {
   width: 19rem;
   margin: 2rem auto;
   border: solid 1px var(--head-color);

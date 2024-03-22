@@ -46,7 +46,21 @@ async function getInventoryDetailByInvId(inv_id) {
     console.error("getInventoryDetail error " + error);
   }
 }
-/******************************
+
+/******************
+ * Add a new classification
+ ******************************/
+async function addClassification(classification_name) {
+  try {
+    const sql =
+      "INSERT INTO public.classification(classification_name) VALUES($1) RETURNING *";
+    return await pool.query(sql, [classification_name]);
+  } catch (error) {
+    return error.message;
+  }
+}
+
+/****************
  * Get members list
  * From a table that does not exists
  * an intentional error
@@ -65,4 +79,5 @@ module.exports = {
   getInventoryByClassificationId,
   getInventoryDetailByInvId,
   getMembers,
+  addClassification,
 };

@@ -48,6 +48,46 @@ invCont.buildManagement = async function (req, res, next) {
   });
 };
 
+/*******************
+ * A function to build
+ * add-classification view
+ **********************/
+invCont.buildAddClassificationView = async function (req, res, next) {
+  const nav = await utilities.getNav();
+  res.render("./inventory/add-classification", {
+    title: "Add Classification",
+    nav,
+    errors: null,
+  });
+};
+
+/*********************
+ * A function to add new classification
+ *************************/
+invCont.addclassification = async function (req, res) {
+  let nav = await utilities.getNav();
+  const { classification_name } = req.body;
+  const addClass = await invModel.addClassification(classification_name);
+  if (addClass) {
+    req.flash(
+      "notice",
+      `${classification_name} has now been added as a new type`
+    );
+    res.status(201).render("inventory/management", {
+      title: "Management",
+      nav,
+      errors: null,
+    });
+  } else {
+    req.flash("notice", "Sorry, the new class addition was not successful.");
+    res.status(501).render("inventory/management", {
+      title: "Management",
+      nav,
+      errors: null,
+    });
+  }
+};
+
 /*****************************
  * A function to demonstrate internal
  * server error
