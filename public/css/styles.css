@@ -188,7 +188,7 @@ footer p {
   font-family: var(--para-font);
   padding: 2rem 0;
 }
-.manage-option a {
+#management .manage-option a {
   font-weight: bold;
   text-decoration: underline;
 }
