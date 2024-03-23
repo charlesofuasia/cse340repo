@@ -248,9 +248,14 @@ label {
   font-family: var(--para-font);
   font-size: 1.1rem;
 }
-input {
+input,
+select,
+textarea {
   width: 95%;
   padding: 0.5rem;
+}
+option {
+  font-family: var(--para-font);
 }
 button {
   border: none;
@@ -269,6 +274,21 @@ button {
   font-family: var(--header-font);
   text-decoration: underline;
 }
+input:required:invalid,
+input:focus:invalid,
+select:required:invalid,
+select:focus:invalid,
+textarea:required:invalid,
+textarea:focus:invalid {
+  background-color: #ff7f7f;
+}
+
+input:required:valid,
+select:required:valid,
+textarea:required:valid {
+  background-color: #add8e6;
+}
+
 @media screen and (min-width: 800px) {
   .home-content,
   #details-view {

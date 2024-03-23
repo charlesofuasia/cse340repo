@@ -1,9 +1,20 @@
 <% if (title) {%>
 <div id="addInventory">
   <h1><%= title %></h1>
+
+  <%- messages() %>
+
+  <!--error message block-->
+  <% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+  <% } %>
   <form action="/inv/add-inventory" method="post">
-    <div>Please provide details of the new vehicle inventory</div>
-    <div>*All fields required</div>
+    <div class="inform">*All fields required</div>
+     <label for="classificationId">Classification: <%- invClass %></label>
     <label for="make">
       Vehicle Make:
       <input
@@ -43,9 +54,9 @@
         id="invDescription"
         cols="30"
         rows="5"
+        minlength="10"
         required
-        aria-valuetext="<%= locals.inv_description %>"
-      ></textarea>
+      ><%= locals.inv_description %></textarea>
     </label>
     <label for="Image">
       Vehicle Image:
@@ -54,8 +65,8 @@
         name="inv_image"
         id="invImage"
         required
-        pattern="(.jpg|.png|jpeg)$"
         value="<%= locals.inv_image %>"
+        
       />
     </label>
     <label for="thumbnail">
@@ -99,17 +110,7 @@
         required
         value="<%= locals.inv_color %>"
       />
-    </label>
-    <label for="classId">
-      Classification Id:
-      <input
-        type="number"
-        name="classification_id"
-        id="classId"
-        required
-        value="<%= locals.classification_id %>"
-      />
-    </label>
+   
     <button type="submit">Add Vehicle</button>
   </form>
 </div>

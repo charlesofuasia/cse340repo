@@ -43,6 +43,14 @@ router.get(
   utilities.handleErrors(invController.buildAddInventoryView)
 );
 
+//Router to post/add new inventory
+router.post(
+  "/add-inventory",
+  inventoryValidate.addInvRules(),
+  inventoryValidate.checkAddInv,
+  utilities.handleErrors(invController.addNewInventory)
+);
+
 //Intentional Error route
 router.get("/err", utilities.handleErrors(invController.intentionalError));
 

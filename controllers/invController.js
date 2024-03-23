@@ -87,14 +87,71 @@ invCont.addclassification = async function (req, res) {
     });
   }
 };
-
+/*****************************************
+ * A function to build a new inventory view
+ **************************************/
 invCont.buildAddInventoryView = async function (req, res, next) {
   const nav = await utilities.getNav();
+  const { classification_id } = req.body;
+  const invClass = await utilities.buildClassificationList(classification_id);
   res.render("./inventory/add-inventory", {
     title: "Add New Inventory",
     nav,
+    invClass,
     errors: null,
   });
+};
+
+/************************************
+ * Add new vehicle inventory to the database
+ **********************************/
+invCont.addNewInventory = async (req, res) => {
+  const nav = await utilities.getNav();
+  const {
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id,
+  } = req.body;
+  const addInventory = await invModel.addNewInventory(
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id
+  );
+  if (addInventory) {
+    req.flash(
+      "notice",
+      `${inv_make} ${inv_model} has been added to the inventory database`
+    );
+    res.status(201).render("inventory/management", {
+      title: "Management",
+      nav,
+      errors: null,
+    });
+  } else {
+    req.flash(
+      "notice",
+      "Sorry, the new item was not successfully added to the database"
+    );
+    res.status(501).render("inventory/management", {
+      title: "Management",
+      nav,
+      errors: null,
+    });
+  }
 };
 
 /*****************************
