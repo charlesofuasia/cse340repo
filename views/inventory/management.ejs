@@ -2,6 +2,15 @@
 <div id="management">
   <h1><%= title %></h1>
   <%- messages() %> <% } else{res.redirect('/')} %>
+
+  <!--error message block-->
+  <% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+  <% } %>
   <p>What would you like to do?</p>
   <p class="manage-option">
     <a href="/inv/add-classification">Add a New Classification</a>
@@ -9,4 +18,14 @@
   <p class="manage-option">
     <a href="/inv/add-inventory">Add a New Inventory</a>
   </p>
+  <h2>Manage Inventory</h2>
+
+  <p>Please select a Classification to view its items.</p>
+
+  <%- classificationSelect %>
+
+  <table id="inventoryDisplay"></table>
 </div>
+<noscript>JavaScript must be enabled to use this page.</noscript>
+
+<script src="../../js/inventory.js"></script>

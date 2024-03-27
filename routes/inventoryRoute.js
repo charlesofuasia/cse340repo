@@ -4,6 +4,7 @@ const router = new express.Router();
 const invController = require("../controllers/invController");
 const utilities = require("../utilities/");
 const inventoryValidate = require("../utilities/inventory-validation");
+const invCont = require("../controllers/invController");
 
 //Route to build inventory by classification view
 router.get(
@@ -18,10 +19,7 @@ router.get(
 );
 
 //Router to build management view
-router.get(
-  "/management",
-  utilities.handleErrors(invController.buildManagement)
-);
+router.get("/", utilities.handleErrors(invController.buildManagement));
 
 // Router to build add-classification view
 router.get(
@@ -49,6 +47,28 @@ router.post(
   inventoryValidate.addInvRules(),
   inventoryValidate.checkAddInv,
   utilities.handleErrors(invController.addNewInventory)
+);
+
+//Router to get json of inventory
+
+router.get(
+  "/getInventory/:classification_id",
+  utilities.handleErrors(invController.getInventoryJSON)
+);
+
+//Route to deliver edit inventory view
+
+router.get(
+  "/edit/:inv_id",
+  utilities.handleErrors(invController.buildEditView)
+);
+
+//Route for posting updated data
+router.post(
+  "/edit-inventory",
+  inventoryValidate.addInvRules(),
+  inventoryValidate.checkAddInv,
+  utilities.handleErrors(invController.updateInventory)
 );
 
 //Intentional Error route

@@ -178,7 +178,8 @@ footer p {
 /* styling for management view*/
 #management,
 #classAdd,
-#addInventory {
+#addInventory,
+#editInventory {
   width: 19rem;
   margin: 2rem auto;
   border: solid 1px var(--head-color);
