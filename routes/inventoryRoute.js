@@ -71,6 +71,9 @@ router.post(
   utilities.handleErrors(invController.updateInventory)
 );
 
+// Route to build delete view
+router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteView))
+
 //Intentional Error route
 router.get("/err", utilities.handleErrors(invController.intentionalError));
 

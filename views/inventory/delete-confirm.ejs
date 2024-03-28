@@ -1,0 +1,70 @@
+<% if (title) {%>
+<div id="editInventory">
+  <h1><%= title %></h1>
+
+  <%- messages() %>
+
+  <!--error message block-->
+  <% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+  <% } %>
+  <form action="/inv/delete" method="post">
+    <div class="inform">
+      Review details before deleting.<br />
+      <b>Action is not reversible</b>
+    </div>
+    <label for="make">
+      Vehicle Make:
+      <input
+        type="text"
+        name="inv_make"
+        id="invMake"
+        required
+        readonly
+        value="<%= locals.inv_make %>" />
+    </label>
+    <label for="model">
+      Vehicle Model:
+      <input
+        type="text"
+        name="inv_model"
+        id="invModel"
+        required
+        readonly
+        value="<%= locals.inv_model %>" />
+    </label>
+    <label for="year">
+      Model Year:
+      <input
+        type="number"
+        name="inv_year"
+        id="invYear"
+        required
+        readonly
+        min="1950"
+        max="2025"
+        value="<%= locals.inv_year %>" />
+    </label>
+
+    <label for="price">
+      Price:
+      <input
+        type="number"
+        name="inv_price"
+        id="invPrice"
+        required
+        readonly
+        min="20"
+        value="<%= locals.inv_price  %>" />
+    </label>
+
+    <button type="submit">Delete Item</button>
+    <input type="text" name="inv_id" <% if(locals.inv_id) { %> value="<%=
+    locals.inv_id %>" <% } %> />
+  </form>
+</div>
+<%} else{res.redirect("/")} %>
