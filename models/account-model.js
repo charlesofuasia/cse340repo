@@ -59,7 +59,7 @@ async function getAccountDetailsById(account_id){
   try{
     const sql = "SELECT * FROM account WHERE account_id = $1";
     const details = await pool.query(sql, [account_id]);
-    return details.rows[0];
+    return details.rows;
   }catch (error){
     return error.message;
   }
