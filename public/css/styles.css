@@ -31,6 +31,9 @@ footer {
   font-family: var(--para-font);
   font-size: 2.2rem;
 }
+#tools .visitor-prompt{
+  font-size: 1.3rem;
+}
 header {
   display: flex;
   justify-content: space-between;
@@ -179,7 +182,8 @@ footer p {
 #management,
 #classAdd,
 #addInventory,
-#editInventory {
+#editInventory,
+ #mgt {
   width: 19rem;
   margin: 2rem auto;
   border: solid 1px var(--head-color);

@@ -133,10 +133,27 @@ async function buildAccountMgt(req, res) {
   });
 }
 
+async function buildUpdateView(req, res){
+  const nav = await utilities.getNav();
+  const account_id = parseInt(req.params.account_id);
+  const accData = await accountModel.getAccountDetailsById(account_id);
+  const username = accData[0].account_firstname + " " + accData[0].account_lastname
+  res.render("account/update", {
+    title: "Update " + username,
+    nav,
+    account_firstname: accData[0].account_firstname,
+    account_lastname: accData[0].account_lastname,
+    account_email: accData[0].account_email,
+    account_id: accData[0].account_id,
+    errors: null,
+  });
+}
+
 module.exports = {
   buildLogin,
   buildRegister,
   registerAccount,
   accountLogin,
   buildAccountMgt,
+  buildUpdateView,
 };

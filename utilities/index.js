@@ -211,4 +211,15 @@ Util.checkLogin = (req, res, next) => {
   }
 };
 
+/******************************
+ * Function to check account type
+ **************************/
+Util.accountType = (req, res, next) => {
+  if (res.locals.accountData.account_type == "Employee" || res.locals.accountData.account_type == "Admin"){
+    next()
+  }else{
+    req.flash("notice", "Access is forbidden.")
+    return res.redirect("/")
+  }
+}
 module.exports = Util;

@@ -45,7 +45,7 @@ app.use(function (req, res, next) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); //for parsing application /x-www-form-urlencoded
 
-//cookie parsing miidleware
+//cookie parsing middleware
 app.use(cookieParser());
 
 //Middleware to verify jwt token
@@ -65,7 +65,7 @@ app.use(static);
 //index route
 app.get("/", utilities.handleErrors(baseController.buildHome));
 
-//Accounts route
+//Account route
 app.use("/account", accountRoute);
 
 // Inventory routes

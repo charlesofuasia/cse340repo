@@ -34,4 +34,7 @@ router.get(
   utilities.handleErrors(accountCont.buildAccountMgt)
 );
 
+//Route to deliver account update view
+router.get("/update/:account_id", utilities.handleErrors(accountCont.buildUpdateView))
+
 module.exports = router;
