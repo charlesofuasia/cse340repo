@@ -303,6 +303,15 @@ textarea:required:valid {
 td a{
   text-decoration: underline;
 }
+p a{
+  font-family: var(--para-font);
+  font-size: 1.2rem;
+  text-decoration: underline;
+}
+td a:hover, p a:hover{
+  font-weight: bold;
+  text-decoration: none;
+}
 
 @media screen and (min-width: 800px) {
   .home-content,
