@@ -91,15 +91,13 @@ validate.addInvRules = () => {
       .trim()
       .escape()
       .notEmpty()
-      .matches(/(([^\\s]+(jpe?g|png))$)/)
-      .withMessage("png or jpg image file path required"),
+      .withMessage("image file path is required"),
 
     body("inv_thumbnail")
       .trim()
       .escape()
       .notEmpty()
-      .matches(/(([^\\s]+(jpe?g|png))$)/)
-      .withMessage("png or jpg image thumbnail file path required"),
+      .withMessage("image thumbnail file path is required"),
 
     body("inv_price")
       .trim()

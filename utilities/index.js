@@ -219,7 +219,7 @@ Util.accountType = (req, res, next) => {
     next()
   }else{
     req.flash("notice", "Access is forbidden.")
-    return res.redirect("/")
+    return res.redirect("/account/")
   }
 }
 module.exports = Util;

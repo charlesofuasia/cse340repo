@@ -172,7 +172,7 @@ footer {
 footer p {
   text-align: center;
 }
-.notice li {
+.notice li, .notice {
   list-style: none;
   font-family: var(--para-font);
   background-color: var(--main-bg);
@@ -292,6 +292,16 @@ input:required:valid,
 select:required:valid,
 textarea:required:valid {
   background-color: #add8e6;
+}
+
+#management table td {
+  font-family: var(--para-font);
+  padding: 4px 7px;
+  gap: 1rem;
+}
+
+td a{
+  text-decoration: underline;
 }
 
 @media screen and (min-width: 800px) {
