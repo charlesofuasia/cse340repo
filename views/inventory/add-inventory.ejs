@@ -15,7 +15,7 @@
   <form action="/inv/add-inventory" method="post">
     <div class="inform">*All fields required</div>
      <label for="classificationId">Classification: <%- classificationSelect %></label>
-    <label for="make">
+    <label for="invMake">
       Vehicle Make:
       <input
         type="text"
@@ -25,7 +25,7 @@
         value="<%= locals.inv_make %>"
       />
     </label>
-    <label for="model">
+    <label for="invModel">
       Vehicle Model:
       <input
         type="text"
@@ -35,7 +35,7 @@
         value="<%= locals.inv_model %>"
       />
     </label>
-    <label for="year">
+    <label for="invYear">
       Model Year:
       <input
         type="number"
@@ -47,7 +47,7 @@
         value="<%= locals.inv_year %>"
       />
     </label>
-    <label for="description">
+    <label for="invDescription">
       Description:
       <textarea
         name="inv_description"
@@ -58,7 +58,7 @@
         required
       ><%= locals.inv_description %></textarea>
     </label>
-    <label for="Image">
+    <label for="invImage">
       Vehicle Image:
       <input
         type="text"
@@ -79,7 +79,7 @@
         value="<%= locals.inv_thumbnail %>"
       />
     </label>
-    <label for="price">
+    <label for="inv_price">
       Price:
       <input
         type="number"
@@ -90,7 +90,7 @@
         value="<%= locals.inv_price  %>"
       />
     </label>
-    <label for="miles">
+    <label for="inv_miles">
       Miles:
       <input
         type="number"
@@ -101,7 +101,7 @@
         value="<%= locals.inv_miles %>"
       />
     </label>
-    <label for="color">
+    <label for="inv_color">
       Color:
       <input
         type="text"

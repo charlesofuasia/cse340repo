@@ -16,7 +16,7 @@
 
   <h2>Personal Information Update</h2>
   <form action="/account/update" method="post">
-    <label for="firstname">
+    <label for="account_firstname">
       First Name:
       <input
         type="text"
@@ -26,7 +26,7 @@
         value="<%= locals.accountData.account_firstname %>"
       />
     </label>
-    <label for="lastname">
+    <label for="account_lastname">
       Last Name:
       <input
         type="text"
@@ -36,7 +36,7 @@
         value="<%= locals.accountData.account_lastname %>"
       />
     </label>
-    <label for="email">
+    <label for="account_email">
       Email:
       <input
         type="email"
@@ -56,7 +56,7 @@
    <h2>Password Update</h2>
    <form action="/account/password-update" method="post">
     <span class="notice">To change password, enter the new password below. Or leave blank to keep old password</span>
-   <label for="password">
+   <label for="account_password">
       Password:
       <input
         type="password"
