@@ -72,7 +72,7 @@ nav {
 nav ul li {
   list-style: none;
   font-family: var(--list-font);
-  font-size: 1.2rem;
+  font-size: 0.7rem;
 }
 nav ul li a {
   text-decoration: none;
@@ -204,6 +204,7 @@ footer p {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
+  margin: auto;
 }
 #inv-display li {
   border: 1px solid var(--head-color);
@@ -319,5 +320,8 @@ td a:hover, p a:hover{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+  }
+  nav ul li{
+    font-size: 1.2rem;
   }
 }
