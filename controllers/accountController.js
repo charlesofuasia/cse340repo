@@ -118,6 +118,9 @@ async function accountLogin(req, res) {
         });
       }
       return res.redirect("/account/");
+    }else{
+      req.flash("notice", "Incorrect login details.")
+      res.redirect("/account/login")
     }
   } catch (error) {
     return new Error("Access Forbidden");
@@ -249,6 +252,7 @@ async function updatePassword(req, res){
 
 
 function logout(req, res){
+  req.flash("notice", "You are now logged out.")
   res.clearCookie("jwt");
   res.clearCookie("sessionId");
   return res.redirect("/");
@@ -261,7 +265,6 @@ module.exports = {
   accountLogin,
   buildAccountMgt,
   buildUpdateView,
-  logout,
   updateAccount,
   updatePassword,
   logout,
