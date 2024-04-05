@@ -1,0 +1,33 @@
+<% if (title) {%>
+    <h2><%= title %></h2>
+    <%} else {res.redirect("/")}  %>
+    <%- messages() %>
+
+     <!--error message block-->
+  <% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+  <% } %>
+  <form action="/messages-box/compose" method="post">
+    <label for="msgTo">
+        Message To: <%- accountSelect %>
+    </label>
+    <label for="subject">
+        Subject: <input type="text" name="message_subject" id="subject" required value="<%= locals.message_subject %>">
+    </label>
+    <label for="msgBody">
+        Write Message: <textarea name="message_body" id="msgBody" cols="30" rows="10"><%= locals.message_body %></textarea>
+    </label>
+    <button type="submit">Send Message</button>
+       <input type="hidden" id="message_from" name="message_from" value="
+      <% if (locals.message_from) { %>
+        <%= locals.message_from %>"
+      <% } else { %>
+        <%= accountData.account_id %>"
+      <% } %>
+      >
+  </form>
+

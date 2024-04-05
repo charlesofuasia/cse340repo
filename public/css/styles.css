@@ -294,11 +294,14 @@ select:required:valid,
 textarea:required:valid {
   background-color: #add8e6;
 }
+table{
+  margin: auto;
+}
 
-#management table td {
+table td {
   font-family: var(--para-font);
-  padding: 4px 7px;
-  gap: 1rem;
+  padding: 4px 10px;
+  gap: 2rem;
 }
 
 td a{

@@ -87,13 +87,23 @@ async function updatePassword(account_id, account_password){
   try {
     const sql = "UPDATE account SET account_password = $2 WHERE account_id = $1 RETURNING *";
     const data = await pool.query(sql, [account_id, account_password]);
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-    console.log(account_id)
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     return data.rows[0];
   }catch (error){
     console.error("Password Update " + error);
   }
+}
+
+/***********************
+ * get name by account_id
+ ********************/
+async function getAccountName(account_id){
+    try{
+       const data = pool.query("SELECT * FROM public.account WHERE account_id = $1 RETURNING *", [account_id])
+       return `${data.rows[0].account_firstname} ${data.rows[0].account_lastname}`
+    
+    }catch (error){
+      return error.message;
+    }
 }
 
 
@@ -104,4 +114,5 @@ module.exports = {
    getAccountDetailsById,
    updateAccount,
    updatePassword,
+   getAccountName,
    };

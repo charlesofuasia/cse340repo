@@ -18,6 +18,7 @@ const pool = require("./database/");
 const accountRoute = require("./routes/accountRoute");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const messageRoute = require("./routes/messageRoute")
 /*****************************
  * Middleware
  ********************************/
@@ -70,6 +71,9 @@ app.use("/account", accountRoute);
 
 // Inventory routes
 app.use("/inv", inventoryRoute);
+
+//Message route
+app.use("/messages-box", messageRoute);
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {

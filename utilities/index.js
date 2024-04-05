@@ -1,7 +1,9 @@
 const invModel = require("../models/inventory-model");
+const accountModel = require("../models/account-model");
 const Util = {};
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const msgModel = require("../models/message-model")
 
 /***************
  * Constructs the nav HTML unordered list
@@ -167,6 +169,24 @@ Util.buildClassificationList = async function (classification_id = null) {
   return classificationList;
 };
 
+/*********************************
+ * To build a select list of accounts
+ *********************************/
+Util.buildAccountSelect = async function(message_to = null){
+  const data = await accountModel.getAccounts();
+  let accountSelect = '<select name="message_to" id="msgTo" required>';
+      accountSelect += "<option value=''>Select Recipient</option>";
+  data.rows.forEach((row) => {
+    accountSelect += '<option value="' + row.account_id +'"';
+    if (message_to != null && row.account_id == message_to){
+      accountSelect += " selected ";
+    }
+    accountSelect += ">"+ row.account_firstname + " " + row.account_lastname + "</option>";
+  });
+  accountSelect += "</select>";
+  return accountSelect;
+};
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for
@@ -222,4 +242,51 @@ Util.accountType = (req, res, next) => {
     return res.redirect("/account/")
   }
 }
+
+/******************************************
+ * To construct a display of inbox messages 
+ ***************************************/
+Util.getInboxMessages = async (account_id) => {
+  const data = await msgModel.getInboxMessages(account_id);
+  let inbox;
+  if (!data){
+    inbox = "<p>You have no message in your inbox.</p>"
+  }else{
+    inbox = "<table>"
+    inbox += "<thead><tr><th>Received</th><th>Subject</th><th>From</th><th>Read</th></tr></thead>"
+    inbox += "<tbody>"
+    data.rows.forEach((row) => {
+      inbox += "<tr><td>" + row.message_created.toLocaleString("en-US", "narrow") + "</td>"
+      inbox += `<td><a href="/messages-box/read/${row.message_id}">` + row.message_subject + "</a></td>"
+      inbox += "<td>" +  getName(row.message_from) + "</td>"
+      inbox += "<td>" + row.message_read + "</td> </tr>"
+    })
+    inbox += "</tbody>"
+    inbox += "</table>"
+
+  }
+  return inbox;
+}
+
+/*****************************
+ * display message body
+ ***********************/
+Util.displayMessage = async (message_id) => {
+  const data = await msgModel.getMessage(message_id);
+
+  let display = '<div class="showMsg">'
+  //display += `<p> Received: ${data.row[0].message_created.toLocaleString("en-US", "normal")}</p>`
+  display += `<p>From: ${data.row.message_from}</p>`
+  display += `<p>Subject: ${data.row.message_subject}</p>`;
+  display += `<p>${data.row.message_body}</p>`
+}
+
+async function getName(message_from){
+  const data = await accountModel.getAccountDetailsById(message_from);
+  return data.account_firstname + " " + data.account_lastname; 
+}
+
+
+
+
 module.exports = Util;
