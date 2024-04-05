@@ -256,9 +256,10 @@ Util.getInboxMessages = async (account_id) => {
     inbox += "<thead><tr><th>Received</th><th>Subject</th><th>From</th><th>Read</th></tr></thead>"
     inbox += "<tbody>"
     data.rows.forEach((row) => {
+      let from = await accountModel.getAccountName(message_from)
       inbox += "<tr><td>" + row.message_created.toLocaleString("en-US", "narrow") + "</td>"
       inbox += `<td><a href="/messages-box/read/${row.message_id}">` + row.message_subject + "</a></td>"
-      inbox += "<td>" +  getName(row.message_from) + "</td>"
+      inbox += "<td>" +  from + "</td>"
       inbox += "<td>" + row.message_read + "</td> </tr>"
     })
     inbox += "</tbody>"
