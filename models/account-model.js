@@ -98,12 +98,19 @@ async function updatePassword(account_id, account_password){
  ********************/
 async function getAccountName(account_id){
     try{
-       const data = pool.query("SELECT * FROM public.account WHERE account_id = $1 RETURNING *", [account_id])
+       const data = pool.query("SELECT * FROM public.account WHERE account_id = $1", [account_id])
        return `${data.rows[0].account_firstname} ${data.rows[0].account_lastname}`
     
     }catch (error){
       return error.message;
     }
+}
+async function getAccounts(){
+  try {
+    return await pool.query("SELECT * FROM public.account ORDER BY account_id")
+  }catch (error){
+    return error.message;
+  }
 }
 
 
@@ -115,4 +122,5 @@ module.exports = {
    updateAccount,
    updatePassword,
    getAccountName,
+   getAccounts,
    };

@@ -6,10 +6,12 @@ const msgModel = require("../models/message-model")
 
 async function getInbox(req, res){
     const nav = await utilities.getNav();
-    const inbox = await utilities.getInboxMessages(res.locals.accountData.account_id)
+    const archived = await msgModel.countArchivedMessages(res.locals.accountData.account_id);
+    const inbox = await utilities.getInboxMessages(res.locals.accountData.account_id);
     res.render("messages-box/inbox", {
         title: "Inbox",
         nav,
+        archived,
         inbox,
         
     })
@@ -81,11 +83,58 @@ async function readMessage(req, res){
 
 }
 
+/*******************************
+ * module to mark a message a read.
+ ***************************/
+async function markRead(req, res){
+    const message_id = req.params.message_id;
+    const read = await msgModel.markRead(message_id);
+    if (read){
+        req.flash("notice", "You just marked a message as read.")
+        res.redirect("/messages-box/")
+    }
+}
+
+
+/*****************************
+ * module to send a message to archive
+ **********************************/
+async function archiveMessage(req, res){
+    const message_id = req.params.message_id;
+    const archived = await msgModel.archiveMessage(message_id);
+    if (archived){
+        req.flash("notice", "You just sent a message to archive.")
+        res.redirect("/messages-box/")
+    }
+}
+
+async function getArchivedMessages(req, res){
+    const nav = await utilities.getNav();
+    const archived = await utilities.getArchivedMessages(res.locals.accountData.account_id);
+    res.render("messages-box/archived", {
+        title: "Archived Messages",
+        nav,
+        archived,
+        errors: null,
+        
+    })
+}
+
+/******************
+ * module to delete message
+ ***********************/
+async function deleteMessage(req, res){
+    const message_id = req.params.message_id;
+    const archived = await msgModel.deleteMessage(message_id);
+    if (archived){
+        req.flash("notice", "Message deleted.")
+        res.redirect("/messages-box/")
+    }
+}
 
 
 
 
 
 
-
-module.exports = {getInbox, buildComposeView, addNewMessage, readMessage}
+module.exports = {getInbox, buildComposeView, addNewMessage, readMessage, markRead, archiveMessage, getArchivedMessages, deleteMessage}

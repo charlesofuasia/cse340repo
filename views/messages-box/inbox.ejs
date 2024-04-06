@@ -2,9 +2,10 @@
     <h1><%= title %></h1>
     <%} else {res.redirect("/")} %>
     <%- messages() %>
+   
 
 <p><a href="/messages-box/compose">Compose New Message</a></p>
-<p><a href="/messages-box/archive">Read Archived Messages</a></p>
+<p><a href="/messages-box/archived">View <%- archived %> archived messages</a></p>
 
 <h2>Inbox Messages</h2>
 

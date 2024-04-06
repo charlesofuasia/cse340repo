@@ -26,7 +26,20 @@ router.get("/read/:message_id",
  utilities.checkLogin, 
  utilities.handleErrors(msgController.readMessage));
 
+ //return to inbox
+ router.get("/return", utilities.checkLogin, utilities.handleErrors(msgController.getInbox))
 
+//mark as read
+router.post("/mark-read/:message_id", utilities.checkLogin, utilities.handleErrors(msgController.markRead))
+
+//archive message
+router.post("/archive/:message_id", utilities.checkLogin, utilities.handleErrors(msgController.archiveMessage))
+
+//get archive
+router.get("/archived", utilities.checkLogin, utilities.handleErrors(msgController.getArchivedMessages))
+
+//delete message
+router.post("/delete/:message_id", utilities.checkLogin, utilities.handleErrors(msgController.deleteMessage))
 
 
 module.exports = router;

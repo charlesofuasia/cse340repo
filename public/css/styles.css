@@ -327,4 +327,8 @@ td a:hover, p a:hover{
   nav ul li{
     font-size: 1.2rem;
   }
+  #actionBtns{
+    display: flex;
+    flex-direction: row;
+  }
 }

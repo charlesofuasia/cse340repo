@@ -256,10 +256,9 @@ Util.getInboxMessages = async (account_id) => {
     inbox += "<thead><tr><th>Received</th><th>Subject</th><th>From</th><th>Read</th></tr></thead>"
     inbox += "<tbody>"
     data.rows.forEach((row) => {
-      let from = await accountModel.getAccountName(message_from)
       inbox += "<tr><td>" + row.message_created.toLocaleString("en-US", "narrow") + "</td>"
       inbox += `<td><a href="/messages-box/read/${row.message_id}">` + row.message_subject + "</a></td>"
-      inbox += "<td>" +  from + "</td>"
+      inbox += "<td>" +  row.account_firstname + " " + row.account_lastname + "</td>"
       inbox += "<td>" + row.message_read + "</td> </tr>"
     })
     inbox += "</tbody>"
@@ -276,15 +275,58 @@ Util.displayMessage = async (message_id) => {
   const data = await msgModel.getMessage(message_id);
 
   let display = '<div class="showMsg">'
-  //display += `<p> Received: ${data.row[0].message_created.toLocaleString("en-US", "normal")}</p>`
-  display += `<p>From: ${data.row.message_from}</p>`
-  display += `<p>Subject: ${data.row.message_subject}</p>`;
-  display += `<p>${data.row.message_body}</p>`
+  display += `<p> Received: ${data.message_created.toLocaleString("en-US", "normal")}</p>`
+  display += `<p>From: ${data.account_firstname} ${data.account_lastname}</p>`
+  display += `<p>Subject: ${data.message_subject}</p>`;
+  display += `<p>${data.message_body}</p>`
+
+  display += '<div id="actionBtns">'
+  display += `
+            <form action="/messages-box/return" method="get">
+              <button type="submit">Back to Inbox</button>
+            </form>
+            <form action="/messages-box/mark-read/${data.message_id}" method="post">
+              <button type="submit">Mark Read</button>
+          </form>
+          <form action="/messages-box/archive/${data.message_id}" method="post">
+              <button type="submit">Archive Message</button>
+          </form>
+          <form action="/messages-box/delete/${data.message_id}" method="post">
+              <button type="submit">Delete</button>
+          </form>
+            `
+  
+
+  return display;
 }
 
-async function getName(message_from){
-  const data = await accountModel.getAccountDetailsById(message_from);
-  return data.account_firstname + " " + data.account_lastname; 
+/******************************************
+ * To construct a display of archived messages 
+ ***************************************/
+Util.getArchivedMessages = async (account_id) => {
+  const data = await msgModel.getArchivedMessages(account_id);
+  let inbox;
+  if (!data.rows.lenght === 0){
+    inbox = "<p>You have no message in your archive.</p>"
+  }else{
+    inbox = "<table>"
+    inbox += "<thead><tr><th>Received</th><th>Subject</th><th>From</th><th>Read</th></tr></thead>"
+    inbox += "<tbody>"
+    data.rows.forEach((row) => {
+      inbox += "<tr><td>" + row.message_created.toLocaleString("en-US", "narrow") + "</td>"
+      inbox += `<td><a href="/messages-box/read/${row.message_id}">` + row.message_subject + "</a></td>"
+      inbox += "<td>" +  row.account_firstname + " " + row.account_lastname + "</td>"
+      inbox += "<td>" + row.message_read + "</td> </tr>"
+    })
+    inbox += "</tbody>"
+    inbox += "</table>"
+
+    inbox += `<form action="/messages-box/return" method="get">
+              <button type="submit">Back to Inbox</button>
+             </form>`
+
+  }
+  return inbox;
 }
 
 

@@ -38,11 +38,13 @@ validate.checkComposeData = async (req, res, next) => {
     let errors = [];
     errors = validationResult(req);
     if (!errors.isEmpty()){
-        let nav = await utilities.getNav()
-        res.render("messages_box/compose", {
+        let nav = await utilities.getNav();
+        const accountSelect = await utilities.buildAccountSelect();
+        res.render("messages-box/compose", {
             errors,
             title: "Compose Message",
             nav,
+            accountSelect,
             message_to,
             message_subject,
             message_body,

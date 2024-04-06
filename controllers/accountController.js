@@ -2,6 +2,7 @@ const utilities = require("../utilities/");
 const accountModel = require("../models/account-model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const msgModel = require("../models/message-model")
 require("dotenv").config();
 
 /**************************
@@ -131,9 +132,11 @@ async function accountLogin(req, res) {
  *********************/
 async function buildAccountMgt(req, res) {
   const nav = await utilities.getNav();
+  const unread = await msgModel.countUnreadMessages(res.locals.accountData.account_id);
   res.render("account/account-management", {
     title: "Account Management",
     nav,
+    unread,
     errors: null,
   });
 }
