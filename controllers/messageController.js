@@ -35,6 +35,8 @@ async function buildComposeView(req, res){
  ********************/
 async function addNewMessage(req, res){
     const nav = await utilities.getNav();
+    const archived = await msgModel.countArchivedMessages(res.locals.accountData.account_id);
+    const inbox = await utilities.getInboxMessages(res.locals.accountData.account_id);
     const accountSelect = await utilities.buildAccountSelect();
     const {
         message_subject,
@@ -54,6 +56,8 @@ async function addNewMessage(req, res){
         res.status(201).render("messages-box/inbox", {
             title: "Message Inbox",
             nav,
+            archived,
+            inbox,
             errors: null,
         })
     }else {
@@ -125,8 +129,8 @@ async function getArchivedMessages(req, res){
  ***********************/
 async function deleteMessage(req, res){
     const message_id = req.params.message_id;
-    const archived = await msgModel.deleteMessage(message_id);
-    if (archived){
+    const messageArchived = await msgModel.deleteMessage(message_id);
+    if (messageArchived){
         req.flash("notice", "Message deleted.")
         res.redirect("/messages-box/")
     }
